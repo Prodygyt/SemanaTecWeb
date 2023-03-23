@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 # import firebase_admin
 # from firebase_admin import credentials, auth
 from functools import wraps
+import pyrebase
 import traceback
 
 app = Flask(__name__)
@@ -18,6 +19,9 @@ config = {
   'databaseURL': ""
 }
 
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+db = firebase.database()
 
 
 # Decorator to check if user is logged in
