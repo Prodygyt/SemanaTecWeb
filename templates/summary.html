@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <title>Left Sidebar with Buttons</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Raleway';
+      }
+      #sidebar {
+        background-color: #343a40;
+        color: white;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 200px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #sidebar h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+      #sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #sidebar li {
+        margin-bottom: 10px;
+      }
+      #sidebar a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2em;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: block;
+      }
+      #sidebar a:hover {
+        background-color: #ffc107;
+        color: black;
+      }
+      #content {
+        margin-left: 200px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar">
+      <h1>Menu</h1>
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('summary') }}">Daily Summary</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <h1>Daily Summary</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae enim vel nulla fringilla dapibus. Quisque euismod vel eros eu scelerisque.</p>
+    </div>
+  </body>
+</html>
+x

@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway';
+}
+#sidebar {
+  background-color: #343a40;
+  color: white;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+#sidebar h1 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#sidebar li {
+  margin-bottom: 10px;
+}
+#sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: block;
+}
+#sidebar a:hover {
+  background-color: #ffc107;
+  color: black;
+}
+#content {
+  margin-left: 200px;
+  padding: 20px;
+}
+.container {
+  width: 30%;
+  height: auto;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #ccc;
+  margin: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  float: left;
+  position: flex;
+}
+.container h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.container li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px #ccc;
+}
+.container li:hover {
+  background-color: #e6e6e6;
+}
+.todo {
+  background-color: #ff9f9f;
+}
+.doing {
+  background-color: #ffd699;
+}
+.done {
+  background-color: #a9e5aa;
+}
+.clearfix {
+  clear: both;
+}
