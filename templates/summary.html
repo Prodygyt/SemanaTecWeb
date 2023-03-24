@@ -1,104 +1,107 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <title>Summary</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Raleway';
-      }
-      #sidebar {
-        background: linear-gradient(135deg, rgba(255, 163, 51, 0.9), rgba(255, 74, 250, 0.9));
-        color: white;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 200px;
-        padding: 20px;
-        box-sizing: border-box;
-      }
-      #sidebar h1 {
-        font-size: 1.5em;
-        margin-bottom: 20px;
-      }
-      #sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      #sidebar li {
-        margin-bottom: 10px;
-      }
-      #sidebar a {
-        color: white;
-        text-decoration: none;
-        font-size: 1.2em;
-        padding: 10px 20px;
-        border-radius: 5px;
-        display: block;
-      }
-      #sidebar a:hover {
-        background-color: #ffc107;
-        color: black;
-      }
-      #content {
-        margin-left: 200px;
-        padding: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="sidebar">
-      <h1>Menu</h1>
-      <ul>
-        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('summary') }}">Daily Summary</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-      </ul>
-    </div>
-    <div id="content">
-      <h1>Daily Summary</h1>
-      <br>
-      <h4>
-        Your activities for today
-      </h4>
-      <br>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Task</th>
-            <th scope="col">Date</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Make a presentation</td>
-            <td>24 March</td>
-            <td class="table-warning">Doing</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Make a suumary</td>
-            <td>24 March</td>
-            <td class="table-danger">To Do</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Contact with the manager/td>
-            <td>24 March</td>
-            <td class="table-success">Done</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <title>Summary</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Raleway';
+    }
+
+    #sidebar {
+      background-color: #343a40;
+      color: white;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 200px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #sidebar h1 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #sidebar li {
+      margin-bottom: 10px;
+    }
+
+    #sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: block;
+    }
+
+    #sidebar a:hover {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    #content {
+      margin-left: 200px;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="sidebar">
+    <h1>Menu</h1>
+    <ul>
+      <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+      <li><a href="{{ url_for('summary') }}">Daily Summary</a></li>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
   </div>
-  </body>
+  <div id="content">
+    <h1>Daily Summary</h1>
+    <br>
+    <h4>
+      Your activities for today
+    </h4>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Task</th>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tarea in tareas %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ tarea['nombre_tarea'] }}</td>
+          <td>{{ tarea['fecha'] }}</td>
+          <td>{{ tarea['status'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+</body>
+
 </html>

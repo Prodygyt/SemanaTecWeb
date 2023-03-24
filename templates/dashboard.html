@@ -1,137 +1,191 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-    <title>Dashboard</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Raleway';
-      }
-      #sidebar {
-        background: linear-gradient(135deg, rgba(255, 163, 51, 0.9), rgba(255, 74, 250, 0.9));
-        color: white;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 200px;
-        padding: 20px;
-        box-sizing: border-box;
-      }
-      #sidebar h1 {
-        font-size: 1.5em;
-        margin-bottom: 20px;
-      }
-      #sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      #sidebar li {
-        margin-bottom: 10px;
-      }
-      #sidebar a {
-        color: white;
-        text-decoration: none;
-        font-size: 1.2em;
-        padding: 10px 20px;
-        border-radius: 5px;
-        display: block;
-      }
-      #sidebar a:hover {
-        background-color: #ffc107;
-        color: black;
-      }
-      #content {
-        margin-left: 200px;
-        padding: 20px;
-      }
-      .container {
-        width: 28%;
-        height: auto;
-        background-color: #f7f7f7;
-        border-radius: 5px;
-        box-shadow: 1px 1px 5px #ccc;
-        margin: 20px;
-        padding: 20px;
-        box-sizing: border-box;
-        float: left;
-      }
-      .container h2 {
-        margin-top: 0;
-        margin-bottom: 10px;
-      }
-      .container ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .container li {
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 1px 1px 5px #ccc;
-      }
-      .container li:hover {
-        background-color: #e6e6e6;
-      }
-      .todo {
-        background-color: #ff9f9f;
-      }
-      .doing {
-        background-color: #ffd699;
-      }
-      .done {
-        background-color: #a9e5aa;
-      }
-      .clearfix {
-        clear: both;
-      }
-      .content-wrapper-containers {
-        margin-left: 225px;
-        margin-top: 200px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="sidebar">
-      <h1>Menu</h1>
+
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Raleway';
+    }
+
+    #sidebar {
+      background-color: #343a40;
+      color: white;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 200px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #sidebar h1 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #sidebar li {
+      margin-bottom: 10px;
+    }
+
+    #sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: block;
+    }
+
+    #sidebar a:hover {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    #content {
+      margin-left: 200px;
+      padding: 20px;
+    }
+
+    .container {
+      width: 28%;
+      height: auto;
+      background-color: #f7f7f7;
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px #ccc;
+      margin: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      float: left;
+    }
+
+    .container h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .container ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container li {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px #ccc;
+    }
+
+    .container li:hover {
+      background-color: #e6e6e6;
+    }
+
+    .todo {
+      background-color: #ff9f9f;
+    }
+
+    .doing {
+      background-color: #ffd699;
+    }
+
+    .done {
+      background-color: #a9e5aa;
+    }
+
+    .clearfix {
+      clear: both;
+    }
+
+    .content-wrapper-containers {
+      margin-left: 225px;
+      margin-top: 50px;
+    }
+
+    .top-wrapper {
+      margin-left: 575px;
+      margin-top: 25px;
+    }
+
+    .middle-wrapper {
+      margin-top: 100px;
+      margin-left: 605px;
+    }
+
+    .button-task {
+      background-color: #343a40;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .button-task:hover {
+      background-color: #ffc107;
+      color: #343a40;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="sidebar">
+    <h1>Menu</h1>
+    <ul>
+      <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+      <li><a href="{{ url_for('summary') }}">Daily Summary</a></li>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+  </div>
+  <div class="top-wrapper">
+    <h1>Welcome User</h1>
+  </div>
+  <div class="middle-wrapper">
+    <a class="button-task" href="{{ url_for('create_document') }}">Create Task</a>
+  </div>
+  <div class="content-wrapper-containers">
+    <div class="container todo">
+      <h2>To Do</h2>
       <ul>
-        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('summary') }}">Daily Summary</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% for name in ToDo %}
+        <li><a href="{{ url_for('details', name=name)}}">{{ name }}</a></li>
+        {% endfor %}
       </ul>
     </div>
-    <div class="content-wrapper-containers">
-        <div class="container todo">
-            <h2>To Do</h2>
-            <ul>
-              <li>Task 1</li>
-              <li>Task 2</li>
-              <li>Task 3</li>
-            </ul>
-          </div>
-          <div class="container doing">
-            <h2>Doing</h2>
-            <ul>
-              <li>Task 4</li>
-              <li>Task 5</li>
-              <li>Task 6</li>
-            </ul>
-          </div>
-          <div class="container done">
-            <h2>Done</h2>
-            <ul>
-              <li>Task 7</li>
-              <li>Task 8</li>
-              <li>Task 9</li>
-            </ul>
-          </div>
-          <div class="clearfix"></div>
+    <div class="container doing">
+      <h2>Doing</h2>
+      <ul>
+        {% for name in Doing %}
+        <li><a href="{{ url_for('details', name=name)}}">{{ name }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
-  </body>
+    <div class="container done">
+      <h2>Done</h2>
+      <ul>
+        {% for name in Done %}
+        <li><a href="{{ url_for('details', name=name)}}">{{ name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</body>
+
 </html>
 x

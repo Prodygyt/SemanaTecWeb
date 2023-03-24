@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-# import firebase_admin
-# from firebase_admin import credentials, auth
 from functools import wraps
 import pyrebase
 import traceback
@@ -9,6 +7,9 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import datetime
 import pytz
+from datetime import datetime as dt
+from google.cloud import firestore as ft
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -31,7 +32,6 @@ cred = credentials.Certificate('semanatecweb-43e74-firebase-adminsdk-p7uuw-c0133
 
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-
 
 
 # Create a list of tasks filtered by their status
@@ -67,15 +67,35 @@ def list_tasks_Done():
 
 def list_tasks_summary():
     lista_tareas = []
-    utc_now = pytz.utc.localize(datetime.datetime.utcnow())
-    cst_now = utc_now.astimezone(pytz.timezone("America/Monterrey"))
-    docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).where(u'fecha', u'==', cst_now).stream()
+    fecha_hoy = date.today()
+    fecha_hoy_str = fecha_hoy.strftime('%Y-%m-%d')
+    docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).where(u'fecha', u'==', fecha_hoy_str).stream()
     for doc in docs:
         doc_data = doc.to_dict()
-        name = doc_data['nombre_tarea']
-        lista_tareas.append(name)
+        # name = doc_data['nombre_tarea']
+        lista_tareas.append(doc_data)
         
     return lista_tareas
+
+# def get_status_tarea(tareas):
+#     lista_tareas = []
+#     docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).where(u'nombre_tarea', u'==', tarea).stream()
+#     for doc in docs:
+#         doc_data = doc.to_dict()
+#         status = doc_data['status']
+#         lista_tareas.append(status)
+
+#     return lista_tareas
+
+# def get_fecha_tarea(tareas):
+#     lista_tareas = []
+#     docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).where(u'nombre_tarea', u'==', tarea).stream()
+#     for doc in docs:
+#         doc_data = doc.to_dict()
+#         date = doc_data['fecha']
+#         lista_tareas.append(date)
+
+#     return lista_tareas
 
 # Decorator to check if user is logged in
 def login_required(f):
@@ -139,7 +159,8 @@ def dashboard():
 @app.route('/summary')
 @login_required
 def summary():
-    return render_template('summary.html')
+    tareas = list_tasks_summary()
+    return render_template('summary.html', tareas=tareas)
 
 @app.route('/logout')
 @login_required
@@ -187,22 +208,33 @@ def update_document():
         status = request.form['status']
 
         # Creating a reference to the Firestore document
-        docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).stream()
-        doc_ref = db.collection('tareas').document(docs.id)
-
-        # Updating the data in the Firestore document
-        doc_ref.update({
-            'nombre_tarea': name,
-            'fecha': date,
-            'status': status,
-            'id_usuario': user_id
-        })
+        docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).where(u'nombre_tarea', u'==', name).stream()
+        for doc in docs:
+            doc_ref = db.collection('tareas').document(doc.id)
+            doc_ref.update({
+                'nombre_tarea': name,
+                'fecha': date,
+                'status': status,
+                'id_usuario': user_id
+            })
 
         # Redirecting to the home page
         return redirect('/dashboard')
     
     return render_template('updateTask.html')
 
+@app.route('/details')
+@login_required
+def details():
+    name = request.args.get('name')
+    docs = db.collection(u'tareas').where(u'id_usuario', u'==', session['user_id']).where(u'nombre_tarea', u'==', name).stream()
+    for doc in docs:
+        doc_data = doc.to_dict()
+        status = doc_data['status']
+        fecha = doc_data['fecha']
+        nombre = doc_data['nombre_tarea']
+
+    return render_template('updateTask.html', status=status, fecha=fecha, nombre=nombre)
 
 if __name__ == '__main__':
     app.run(debug=True)

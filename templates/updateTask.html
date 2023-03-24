@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Task</title>
+	<!-- Include necessary CSS and JS files for datepicker -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+	<!-- Add custom CSS for improved design -->
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: 'Raleway';
+		}
+		h1 {
+			margin: 0 auto;
+			padding: 50px;
+			text-align: center;
+			color: #343a40;
+			font-size: 36px;
+			font-weight: bold;
+			text-shadow: 2px 2px 2px #cccccc;
+		}
+		form {
+			margin: 0 auto;
+			width: 60%;
+			background-color: #ffffff;
+			border: 1px solid #cccccc;
+			padding: 20px;
+			border-radius: 10px;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			color: #333333;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: 1px solid #cccccc;
+			border-radius: 5px;
+			font-size: 16px;
+			color: #333333;
+			box-sizing: border-box;
+		}
+		button[type="submit"] {
+			background-color: #343a40;
+			color: #ffffff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 18px;
+			font-weight: bold;
+			cursor: pointer;
+			text-transform: uppercase;
+			transition: all 0.3s ease;
+		}
+		button[type="submit"]:hover {
+			background-color: #ffc107;
+            color: #343a40;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+	<h1>Update Task</h1>
+	<form method="post" action="{{ url_for('update_document') }}">
+		<label for="name">Task Name:</label>
+		<input type="text" id="name" name="name" placeholder="Enter task name" value="{{ nombre }}"><br>
+
+		<label for="status">Task Status:</label>
+		<input type="text" id="status" name="status" placeholder="To Do, Doing, Done" value="{{ status }}"><br>
+
+		<label for="date">Due Date:</label>
+		<input type="text" id="date" name="date" placeholder="Select due date" value="{{ fecha }}"><br>
+
+		<!-- Initialize flatpickr datepicker on the input field -->
+		<script>
+			flatpickr("#date", {
+				enableTime: false,
+				dateFormat: "Y-m-d",
+				minDate: "today"
+			});
+		</script>
+
+		<button type="submit">Update Task</button>
+	</form>
+</body>
+</html>
